@@ -31,23 +31,23 @@ header p {
 .jumbotron {
   display: flex;
   align-items: center;
-  background-image: url('https://content.codecademy.com/projects/make-a-website/lesson-4/jumbotron.jpg');
+  background-image: url('https://cdn.pixabay.com/photo/2016/01/26/03/11/cage-1161869_960_720.png');
   background-size: cover;
-  color: #ffffff;
+  color: #FFFFFF;
   height: 500px;
-  text-shadow: 0.25px 0.25px 0.25px #000000;
+  text-shadow: 0.25px 0.25px 0.25px #FFFFFF;
 }
 
 .jumbotron h2 {
   font-size: 60px;
   font-weight: 700;
   margin: 0;
-  color: #fff;
+  color: #575757;
 }
 
 .jumbotron h3 {
   margin: 0 0 20px;
-  color: #fff;
+  color: #575757;
 }
 
 section .row img {
