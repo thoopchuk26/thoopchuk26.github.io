@@ -35,19 +35,20 @@ header p {
   background-size: cover;
   color: #FFFFFF;
   height: 500px;
-  text-shadow: 0.25px 0.25px 0.25px #FFFFFF;
+  text-shadow: 2px 2px 2px #FFFFFF;
 }
 
 .jumbotron h2 {
   font-size: 60px;
   font-weight: 700;
   margin: 0;
-  color: #575757;
+  color: #383838;
 }
 
 .jumbotron h3 {
+  font-size: 30px;
   margin: 0 0 20px;
-  color: #575757;
+  color: #383838;
 }
 
 section .row img {
@@ -95,4 +96,20 @@ footer ul {
 footer li img {
   width: 32px;
   height: 32px;
+}
+
+li {
+  margin-top: 20px;
+  font-family: 'PT Serif';
+  font-size: 20px;
+  font-weight: 300;
+}
+
+p {
+  font-family: 'Fira Sans';
+  font-size : 17px;
+}
+
+a{
+  font-size:20px;
 }
