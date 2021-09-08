@@ -1,0 +1,62 @@
+$(document).ready(function() {
+  var abilityName;
+  $('.randomAbility').click(function(){
+    $.ajax({
+      dataType: "jsonp",
+      jsonpCallback: "parseQuote",
+      url: "http://ddragon.leagueoflegends.com/cdn/11.17.1/data/en_US/champion.json",
+      success: function(results) {
+        $.ajax({
+          dataType: "jsonp",
+          jsonpCallback: "parseQuote",
+          url: `http://ddragon.leagueoflegends.com/cdn/11.17.1/data/en_US/${results["name"]}.json`,
+          success: function(results) {
+            abilityName = results["spells"];
+            $('#ability').attr("src", abilityName);
+          },
+        })
+      },
+      error: function(xhr,status,error) {
+        console.log(error);
+      }
+    })
+  })
+
+  $('.songTitle').ready(function(){
+    $.ajax({
+      dataType: "jsonp",
+      jsonpCallback: "parseQuote",
+      url: `https://api.spotify.com/v1/search/${abilityName}`,
+      success: function(results){
+        $('#song').attr("src", results["Name"]);
+      },
+      error: function(xhr,status,error){
+        console.log(error);
+      })
+    })
+  })
+
+  $('.abilityPicture').ready(function(){
+    var noSpace = abilityName.replace(/\s/g, '');
+    $.ajax({
+      dataType: "jsonp",
+      jsonpCallback: "parseQuote",
+      url: `http://ddragon.leagueoflegends.com/cdn/11.17.1/img/spell/${abilityName}.png`
+      success: function(results){
+        $('abilityPic').attr('src', results);
+      }
+    })
+  })
+
+  $('.songPicture').ready(function(){
+    var noSpace = abilityName.replace(/\s/g, '+');
+    $.ajax({
+      dataType: "jsonp",
+      jsonpCallback: "parseQuote",
+      url: `https://api.spotify.com/v1/search?q=${noSpace}/images`
+      success: function(results){
+        $('abilityPic').attr('src', results);
+      }
+    })
+  })
+})
