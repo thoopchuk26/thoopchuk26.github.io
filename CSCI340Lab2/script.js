@@ -41,7 +41,7 @@ $(document).ready(function() {
     $.ajax({
       dataType: "jsonp",
       jsonpCallback: "parseQuote",
-      url: `http://ddragon.leagueoflegends.com/cdn/11.17.1/img/spell/${abilityName}.png`
+      url: `http://ddragon.leagueoflegends.com/cdn/11.17.1/img/spell/${noSpace}.png`
       success: function(results){
         $('abilityPic').attr('src', results);
       }
