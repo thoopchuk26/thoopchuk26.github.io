@@ -22,7 +22,7 @@ $(document).ready(function() {
     })
   })
 
-  $('.songTitle').ready(function(){
+  $('.songTitle').click(function(){
     $.ajax({
       dataType: "jsonp",
       jsonpCallback: "parseQuote",
@@ -53,7 +53,7 @@ $(document).ready(function() {
     $.ajax({
       dataType: "jsonp",
       jsonpCallback: "parseQuote",
-      url: `https://api.spotify.com/v1/search?q=${noSpace}/images`
+      url: `https://api.spotify.com/v1/search?q=track"'${noSpace}'"/images`
       success: function(results){
         $('abilityPic').attr('src', results);
       }
