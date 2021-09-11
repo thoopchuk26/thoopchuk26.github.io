@@ -1,54 +1,38 @@
 $(document).ready(function() {
-  var abilityName;
-  $('.randomAbility').click(function(){
+  var cardName;
+  $("#randomCard").click(function(){
     $.ajax({
-      dataType: "jsonp",
-      jsonpCallback: "parseQuote",
-      url: "http://ddragon.leagueoflegends.com/cdn/11.17.1/data/en_US/champion.json",
+      dataType: "json",
+      jsonCallback: "parseQuote",
+      url: "https://db.ygoprodeck.com/api/v7/randomcard.php",
       success: function(results) {
-        $.ajax({
-          dataType: "jsonp",
-          jsonpCallback: "parseQuote",
-          url: `http://ddragon.leagueoflegends.com/cdn/11.17.1/data/en_US/${results["name"]}.json`,
-          success: function(results) {
-            abilityName = results["spells"];
-            $('#ability').attr("src", abilityName);
-            var noSpace = abilityName.replace(/\s/g, '+');
-            $.ajax({
-              dataType: "jsonp",
-              jsonpCallback: "parseQuote",
-              url: `https://api.spotify.com/v1/search?q=track"'${noSpace}'"/images`,
-              success: function(results){
-                $('abilityPic').attr('src', results);
-              },
-            })
-          },
-        })
+        console.log(results["name"]);
+        console.log(results["card_images"][0]["image_url"]);
+        cardName = results["name"];
+        document.getElementById("cardName").innerHTML = results["name"];
+        $('#cardPic').attr("src", results["card_images"][0]["image_url"]).height('300px').width('200px');
       },
       error: function(xhr,status,error) {
         console.log(error);
       },
     })
+  })
 
-  $('.songTitle').click(function(){
+  $('#getTitle').click(function(){
+    var noSpace = cardName.replace(/\s/g, '');
     $.ajax({
-      dataType: "jsonp",
-      jsonpCallback: "parseQuote",
-      url: `https://api.spotify.com/v1/search/${abilityName}`,
+      dataType: "json",
+      jsonCallback: "parseQuote",
+      url: `https://api.deezer.com/search?q=${noSpace}`,
       success: function(results){
-        $('#song').attr("src", results["Name"]);
-        var noSpace = abilityName.replace(/\s/g, '');
-        $.ajax({
-          dataType: "jsonp",
-          jsonpCallback: "parseQuote",
-          url: `http://ddragon.leagueoflegends.com/cdn/11.17.1/img/spell/${noSpace}.png`,
-          success: function(results){
-            $('abilityPic').attr('src', results);
-          }
-        })
+        console.log(results);
+        document.getElementById("songTitle").innerHTML = results["title"];
+        $('#songMusic').attr("src", results["picture"]).height('300px').width('300px');
+        document.getElementById("songPreview").innerHTML = results["preview"];
       },
       error: function(xhr,status,error){
         console.log(error);
+        console.log("no song");
       },
     })
   })
