@@ -21,9 +21,9 @@ $(document).ready(function() {
   $('#getTitle').click(function(){
     var noSpace = cardName.replace(/\s/g, '');
     $.ajax({
-      dataType: "json",
+      dataType: "jsonp",
       jsonCallback: "parseQuote",
-      url: `https://api.deezer.com/search?q=${noSpace}`,
+      url: `https://api.deezer.com/search?q=eminem`,
       success: function(results){
         console.log(results);
         document.getElementById("songTitle").innerHTML = results["title"];
