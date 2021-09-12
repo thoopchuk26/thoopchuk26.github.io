@@ -21,14 +21,15 @@ $(document).ready(function() {
   $('#getTitle').click(function(){
     var noSpace = cardName.replace(/\s/g, '');
     $.ajax({
-      dataType: "jsonp",
+      type: "GET",
+      dataType: "json",
       jsonCallback: "parseQuote",
-      url: `https://api.deezer.com/search?q=eminem`,
+      url: `https://cors-anywhere.herokuapp.com/http://api.deezer.com/search?q=${cardName}`,
       success: function(results){
         console.log(results);
-        document.getElementById("songTitle").innerHTML = results["title"];
-        $('#songMusic').attr("src", results["picture"]).height('300px').width('300px');
-        document.getElementById("songPreview").innerHTML = results["preview"];
+        document.getElementById("songTitle").innerHTML = results["data"][0]["title"];
+        $('#songMusic').attr("src", results["data"][0]["album"]["cover_medium"]).height('300px').width('300px');
+        $('#songPreview').attr("href", results["data"][0]["preview"]);
       },
       error: function(xhr,status,error){
         console.log(error);
@@ -36,4 +37,14 @@ $(document).ready(function() {
       },
     })
   })
+
+  function parseQuote(json) {
+  if (!json.Error) {
+    $('#resultForm').submit();
+  } else {
+    $('#loading').hide();
+    $('#userForm').show();
+    alert(json.Message);
+  }
+}
 })
