@@ -1,4 +1,93 @@
-baseURL = 'https://thoopchuk26.github.io/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
-theme = 'hello-friend-ng'
+baseurl      = "https://thoopchuk26.github.io/"
+title        = "My Blog"
+languageCode = "en-us"
+theme        = "hello-friend-ng"
+paginate     = 10
+
+[params]
+  dateform        = "Jan 2, 2006"
+  dateformShort   = "Jan 2"
+  dateformNum     = "2006-01-02"
+  dateformNumTime = "2006-01-02 15:04"
+
+  # Subtitle for home
+  homeSubtitle = "Game dev that makes everything except games somehow"
+
+  # Set disableReadOtherPosts to true in order to hide the links to other posts.
+  disableReadOtherPosts = false
+
+  # Enable sharing buttons, if you like
+  enableSharingButtons = true
+  
+  # Show a global language switcher in the navigation bar
+  enableGlobalLanguageMenu = true
+
+  # Metadata mostly used in document's head
+  description = "My new homepage or blog"
+  keywords = "homepage, blog"
+  images = [""]
+
+[[params.social]]
+  name = "discord"
+  url = "https://www.discordapp.com/users/190865176617156608"
+
+[[params.social]]
+  name = "linkedin"
+  url = "https://www.linkedin.com/in/thoopchuk26/"
+
+[[params.social]]
+  name = "github"
+  url = "https://github.com/thoopchuk26"
+  
+[[params.social]]
+  name = "twitter"
+  url = "https://twitter.com/Dephlink"
+  
+[[params.social]]
+  name = "itchio"
+  url = "https://thoopchuk26.itch.io"
+
+[[params.social]]
+  name = "leetcode"
+  url = "https://leetcode.com/Thoopchuk26/"
+
+[taxonomies]
+    category = "blog"
+    tag      = "tags"
+    series   = "series"
+
+[languages]
+  [languages.en]
+    title = "Hub World"
+    copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
+
+  [languages.en.params]
+    subtitle  = "My website"
+    keywords = ""
+    readOtherPosts = "Read other posts"
+
+    [languages.en.params.logo]
+      logoText = "cout << 'Th00p'"
+      logoHomeLink = "/"
+    # or
+    #
+    # path = "/img/your-example-logo.svg"
+    # alt = "Your example logo alt text"
+
+  # And you can even create generic menu
+  [[menu.main]]
+    identifier = "about"
+    name       = "About Me"
+    url        = "/about/about_me"
+  [[menu.main]]
+    identifier = "blog"
+    name       = "Blog"
+    url        = "/posts"
+  [[menu.main]]
+    identifier = "projects"
+    name       = "Projects"
+    url        = "/projects"
+  [[menu.main]]
+    identifier = "support"
+    name       = "Support"
+    url        = "https://ko-fi.com/th00p"
