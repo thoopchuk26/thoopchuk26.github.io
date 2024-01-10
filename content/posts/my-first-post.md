@@ -1,8 +1,9 @@
-+++
-title = 'My First Post'
-date = 2024-01-01T23:19:45-06:00
-draft = false
-+++
+---
+title: First Post on the Site
+author: Trey Hoopchuk
+type: post
+date: 2023-01-09T19:00:00
+draft: false
+---
 
-this site lookin kinda clean fr
-
+First post to make sure everything is working fine

@@ -1,8 +1,24 @@
 baseurl      = "https://thoopchuk26.github.io/"
-title        = "My Blog"
+title        = "My Website"
 languageCode = "en-us"
 theme        = "hello-friend-ng"
+
 paginate     = 10
+rssLimit  = 10
+
+# googleAnalytics = ""
+# disqusShortname = ""
+
+archetypeDir = "archetypes"
+contentDir   = "content"
+dataDir      = "data"
+layoutDir    = "layouts"
+publishDir   = "public"
+
+buildDrafts  = false
+buildFuture  = false
+buildExpired = false
+canonifyURLs = true
 
 [params]
   dateform        = "Jan 2, 2006"
@@ -10,8 +26,14 @@ paginate     = 10
   dateformNum     = "2006-01-02"
   dateformNumTime = "2006-01-02 15:04"
 
+  # backgroundImage = "assets/images/background.jpg"
+
+  # Prefix of link to the git commit detail page. GitInfo must be enabled.
+  #
+  # gitUrl = "https://github.com/thoopchuk26/thoopchuk26.github.io"
+
   # Subtitle for home
-  homeSubtitle = "Game dev that makes everything except games somehow"
+  homeSubtitle = "Graphics and Game dev that makes everything except games somehow"
 
   # Set disableReadOtherPosts to true in order to hide the links to other posts.
   disableReadOtherPosts = false
@@ -20,36 +42,28 @@ paginate     = 10
   enableSharingButtons = true
   
   # Show a global language switcher in the navigation bar
-  enableGlobalLanguageMenu = true
+  enableGlobalLanguageMenu = false
 
   # Metadata mostly used in document's head
   description = "My new homepage or blog"
   keywords = "homepage, blog"
   images = [""]
-
-[[params.social]]
-  name = "discord"
-  url = "https://www.discordapp.com/users/190865176617156608"
-
-[[params.social]]
-  name = "linkedin"
-  url = "https://www.linkedin.com/in/thoopchuk26/"
-
-[[params.social]]
-  name = "github"
-  url = "https://github.com/thoopchuk26"
   
-[[params.social]]
-  name = "twitter"
-  url = "https://twitter.com/Dephlink"
-  
-[[params.social]]
-  name = "itchio"
-  url = "https://thoopchuk26.itch.io"
+  [params.author]
+    name = "Trey Hoopchuk"
 
-[[params.social]]
-  name = "leetcode"
-  url = "https://leetcode.com/Thoopchuk26/"
+  [params.footer]
+    trademark = 2024
+    rss = true
+    copyright = true
+    author = true
+
+    topText = []
+    bottomText = [
+      "Powered by <a href=\"http://gohugo.io\">Hugo</a>",
+      "Contact me at thoopchuk@gmail.com",
+      "Theme made by <a href=\"https://github.com/rhazdon\">rhazdon</a>"
+    ]
 
 [taxonomies]
     category = "blog"
@@ -58,11 +72,12 @@ paginate     = 10
 
 [languages]
   [languages.en]
-    title = "Hub World"
+    title = "Th00p"
+    trademark = ""
     copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
 
   [languages.en.params]
-    subtitle  = "My website"
+    subtitle  = "Hub World"
     keywords = ""
     readOtherPosts = "Read other posts"
 
@@ -91,3 +106,28 @@ paginate     = 10
     identifier = "support"
     name       = "Support"
     url        = "https://ko-fi.com/th00p"
+
+
+[[params.social]]
+  name = "discord"
+  url = "https://www.discordapp.com/users/190865176617156608"
+
+[[params.social]]
+  name = "linkedin"
+  url = "https://www.linkedin.com/in/thoopchuk26/"
+
+[[params.social]]
+  name = "github"
+  url = "https://github.com/thoopchuk26"
+  
+[[params.social]]
+  name = "twitter"
+  url = "https://twitter.com/Dephlink"
+  
+[[params.social]]
+  name = "itchio"
+  url = "https://thoopchuk26.itch.io"
+
+[[params.social]]
+  name = "leetcode"
+  url = "https://leetcode.com/Thoopchuk26/"
