@@ -1,7 +1,7 @@
 baseurl      = "https://thoopchuk26.github.io/"
 title        = "My Website"
 languageCode = "en-us"
-theme        = "hugo-theme-hello-friend-ng"
+theme        = "hello-friend-ng"
 
 paginate     = 10
 rssLimit  = 10
