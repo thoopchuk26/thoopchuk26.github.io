@@ -15,29 +15,58 @@ permissions:
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Build React App (sts_stats)
+        run: |
+          cd sts_stats
+          npm ci
+          npm run build
+          # Build output will be in sts_stats/dist
+          cd ..
+      
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      
+      - name: Prepare deployment directory
+        run: |
+          mkdir -p deploy
+          
+          # Copy your original static site files
+          cp -r .github static helpers index.html index.html.tmp style deploy/ 2>/dev/null || true
+          
+          # Copy the built React app preserving dist folder structure
+          if [ -d "sts_stats/dist" ]; then
+            mkdir -p deploy/sts_stats/dist
+            cp -r sts_stats/dist/* deploy/sts_stats/dist/
+          fi
+          
+          touch deploy/.nojekyll
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          path: 'deploy'
+      
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

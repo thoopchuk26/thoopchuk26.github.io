@@ -1,0 +1,37 @@
+1. Card Pick Order Heatmap
+Shows at which floor/act cards are typically picked, revealing early-game vs late-game power cards.
+
+X-axis: Act (1, 2, 3, 4)
+
+Y-axis: Floor number
+
+Color intensity: Pick frequency
+
+Helps identify cards that are strong early picks vs late-game additions
+
+2. Win Rate by Card Cost Distribution
+Bar chart showing win rates broken down by energy cost (0, 1, 2, 3, X-cost)
+
+Compare average win rate for different energy costs
+
+Stacked bars showing base vs upgraded win rates
+
+Reveals if expensive cards are worth their cost
+
+12. Card Pool Discovery
+Visualization showing which cards are being discovered vs being picked
+
+Pie/bar chart of seen vs picked rates
+
+Reveals cards that are consistently skipped even when offered
+
+Helps identify underrated cards
+
+14. First Pick Analysis
+Special view for Neow's starting card rewards
+
+Win rates for each starting card choice
+
+Broken down by character and ascension
+
+Helps with optimal Neow choice
