@@ -38,10 +38,11 @@ jobs:
       
       - name: Build React App
         run: |
-          cd web_server/sts_stats
+          cd sts_stats
           npm ci
           npm run build
-          cd ../..
+          # Build output will be in sts_stats/dist
+          cd ..
       
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -49,8 +50,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload the web_server directory (where your site actually lives)
-          path: 'web_server'
+          # Upload the entire repository (like your original working workflow)
+          path: '.'
       
       - name: Deploy to GitHub Pages
         id: deployment
