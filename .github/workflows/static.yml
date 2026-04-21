@@ -36,36 +36,21 @@ jobs:
         with:
           node-version: '20'
       
-      - name: Build React App (sts_stats)
+      - name: Build React App
         run: |
-          cd sts_stats
+          cd web_server/sts_stats
           npm ci
           npm run build
-          # Build output will be in sts_stats/dist
-          cd ..
+          cd ../..
       
       - name: Setup Pages
         uses: actions/configure-pages@v5
       
-      - name: Prepare deployment directory
-        run: |
-          mkdir -p deploy
-          
-          # Copy your original static site files
-          cp -r .github static helpers index.html index.html.tmp style deploy/ 2>/dev/null || true
-          
-          # Copy the built React app preserving dist folder structure
-          if [ -d "sts_stats/dist" ]; then
-            mkdir -p deploy/sts_stats/dist
-            cp -r sts_stats/dist/* deploy/sts_stats/dist/
-          fi
-          
-          touch deploy/.nojekyll
-      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'deploy'
+          # Upload the web_server directory (where your site actually lives)
+          path: 'web_server'
       
       - name: Deploy to GitHub Pages
         id: deployment
