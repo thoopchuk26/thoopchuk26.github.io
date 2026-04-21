@@ -1,6 +1,5 @@
 {
   "name": "sts-frontend",
-  "homepage": "/sts_stats",
   "private": true,
   "version": "0.0.0",
   "type": "module",

@@ -16,9 +16,7 @@ concurrency:
 
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    environment: github-pages
     runs-on: ubuntu-latest
     
     steps:
@@ -33,51 +31,12 @@ jobs:
       - name: Build React App
         run: |
           cd sts_stats
-          
-          # Debug 1: Check if secrets exist
-          echo "Step 1: Checking secrets..."
-          if [ -n "${{ secrets.VITE_SUPABASE_URL }}" ]; then
-            echo "✅ VITE_SUPABASE_URL secret exists"
-          else
-            echo "❌ VITE_SUPABASE_URL secret is missing"
-          fi
-          
-          if [ -n "${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}" ]; then
-            echo "✅ VITE_SUPABASE_PUBLISHABLE_KEY secret exists"
-          else
-            echo "❌ VITE_SUPABASE_PUBLISHABLE_KEY secret is missing"
-          fi
-          
-          # Debug 2: Create .env with explicit values
-          echo "Step 2: Creating .env file..."
-          cat > .env << 'EOF'
-          VITE_SUPABASE_URL=${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_PUBLISHABLE_KEY=${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
-          EOF
-          
-          # Debug 3: Show .env exists (values masked)
-          echo "Step 3: .env file created:"
-          ls -la .env
-          
-          # Debug 4: Install dependencies
-          echo "Step 4: Installing dependencies..."
           npm ci
-          
-          # Debug 5: Build with verbose output
-          echo "Step 5: Building..."
-          npm run build -- --debug 2>&1 | tee build.log
-          
-          # Debug 6: Check built files for environment variables
-          echo "Step 6: Checking built files..."
-          if grep -r "VITE_SUPABASE" dist/ 2>/dev/null; then
-            echo "⚠️ Environment variables found in built files (not ideal for security)"
-          else
-            echo "✅ No raw env vars in built files"
-          fi
-          
-          # Clean up
-          rm .env
+          npm run build
           cd ..
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
       
       - name: Setup Pages
         uses: actions/configure-pages@v5
